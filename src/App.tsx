@@ -1,10 +1,10 @@
 import './App.css';
+import UsersList from './components/UsersList';
 
 function App() {
   return (
-    <div className="app">
-      Hello world
-      <button className="button">hh</button>
+    <div className="container mx-auto">
+      <UsersList />
     </div>
   );
 }
