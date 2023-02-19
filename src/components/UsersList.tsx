@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, fetchUsersThC, RootState } from '../store';
+import { addUserThC, AppDispatch, fetchUsersThC, RootState } from '../store';
+import Skeleton from './Skeleton';
+import Button from './Button';
 
 type PropsT = {};
 
@@ -15,8 +17,18 @@ const UsersList: React.FC<any> = (props) => {
     dispatch(fetchUsersThC());
   }, []);
 
+  const handleAddUser = () => {
+    dispatch(addUserThC());
+  };
+
   const renderedUsers = usersEntities.map((user) => {
-    return <div key={user.id}>{user.name}</div>;
+    return (
+      <div key={user.id} className="mb border rounded">
+        <div className="flex p-2 justify-between items-center cursor-pointer">
+          {user.name}
+        </div>
+      </div>
+    );
   });
 
   if (error) {
@@ -29,13 +41,14 @@ const UsersList: React.FC<any> = (props) => {
 
   return (
     <div>
+      <div className="flex flex-row justify-between my-3">
+        <h1 className="m-2 text-xl">Users</h1>
+        <Button onClick={handleAddUser}>+ Add User</Button>
+      </div>
       {isLoading ? (
-        <div>Loading...</div>
+        <Skeleton times={10} className="h-10 w-full" />
       ) : (
-        <div>
-          {!renderedUsers.length && <div>Fetch Users</div>}
-          <div> {renderedUsers}</div>
-        </div>
+        <div> {renderedUsers}</div>
       )}
     </div>
   );

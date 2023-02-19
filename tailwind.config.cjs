@@ -9,7 +9,7 @@ module.exports = {
         },
       },
       animation: {
-        shimmer: 'shimmer 2s infinite',
+        shimmer: 'shimmer 1.6s infinite',
       },
     },
   },

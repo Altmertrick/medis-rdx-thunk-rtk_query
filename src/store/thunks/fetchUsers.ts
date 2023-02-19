@@ -1,8 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { pauseSuccess, pauseError } from '../../utils/pause';
 
 const fetchUsersThC = createAsyncThunk('fetch/users', async () => {
-  const res = await axios.get('http://localhost:3005/users');
+  const res = await axios.get('http://localhost:3005/users', {
+    params: {
+      _page: 1,
+      _limit: 10,
+    },
+  });
+
+  //const totalCount = res.headers['x-total-count']
 
   //DEV ONLY
   const r = await pauseSuccess(1000);
@@ -11,21 +19,5 @@ const fetchUsersThC = createAsyncThunk('fetch/users', async () => {
 
   return res.data;
 });
-
-//DEV ONLY Pause
-function pauseSuccess(duration: number) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('123');
-    }, duration);
-  });
-}
-function pauseError(duration: number) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject('Error message');
-    }, duration);
-  });
-}
 
 export { fetchUsersThC };

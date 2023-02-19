@@ -1,5 +1,6 @@
 import { createSlice, SerializedError } from '@reduxjs/toolkit';
 import { fetchUsersThC } from '../thunks/fetchUsers';
+import { addUserThC } from '../thunks/addUser';
 
 type UserT = {
   id: string;
@@ -12,6 +13,8 @@ interface UsersState {
 }
 const initialState = {
   usersEntities: [],
+  currentPage: 1,
+  pageSize: 5,
   isLoading: false,
   error: null,
 } as UsersState;
@@ -24,7 +27,9 @@ const userSlice = createSlice({
       state.usersEntities.push(action.payload);
     },
   },
+
   extraReducers: (builder) => {
+    //Fetch users
     builder.addCase(fetchUsersThC.pending, (state, action) => {
       state.isLoading = true;
     });
@@ -33,6 +38,18 @@ const userSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(fetchUsersThC.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    });
+    //Add user
+    builder.addCase(addUserThC.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(addUserThC.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.usersEntities.push(action.payload);
+    });
+    builder.addCase(addUserThC.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error;
     });
