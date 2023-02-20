@@ -1,49 +1,45 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUserThC, AppDispatch, fetchUsersThC, RootState } from '../store';
 import Skeleton from './Skeleton';
 import Button from './Button';
-import { curryGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
+import { AsyncThunk } from '@reduxjs/toolkit';
+
+const useThunk = (thunk: AsyncThunk<any, void, any>) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const runThunk = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      await dispatch(thunk()).unwrap();
+    } catch (error) {
+      setError(error as Error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [dispatch, thunk]);
+
+  return [runThunk, isLoading, error] as const;
+};
 
 type PropsT = {};
 
 const UsersList: React.FC<any> = (props) => {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const [isLoadingUsers, setIsLoadingUsers] = useState(false);
-  const [loadingUsersError, setLoadingUsersError] = useState<any>(null);
-
-  const [isLoadingAddUser, setIsLoadingAddUser] = useState(false);
-  const [addUserError, setAddUserError] = useState<any>(null);
+  const [doFetchUsers, isLoadingFetchUsers, errorFetchUsers] =
+    useThunk(fetchUsersThC);
+  const [doAddUser, isLoadingAddUser, addUserError] = useThunk(addUserThC);
 
   const { usersEntities } = useSelector((state: RootState) => state.users);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      setIsLoadingUsers(true);
-      try {
-        //using 'unwrap' to be able to catch errors
-        await dispatch(fetchUsersThC()).unwrap();
-        //setIsLoadingUsers(false);
-      } catch (error) {
-        setLoadingUsersError(error);
-        //setIsLoadingUsers(false);
-      } finally {
-        setIsLoadingUsers(false);
-      }
-    };
-    fetchUsers();
-  }, []);
+    doFetchUsers();
+  }, [doFetchUsers]);
 
-  const handleAddUser = async () => {
-    setIsLoadingAddUser(true);
-    try {
-      await dispatch(addUserThC()).unwrap();
-    } catch (error) {
-      setAddUserError(error);
-    } finally {
-      setIsLoadingAddUser(false);
-    }
+  const handleAddUser = () => {
+    doAddUser();
   };
 
   const renderedUsers = usersEntities.map((user) => {
@@ -56,10 +52,10 @@ const UsersList: React.FC<any> = (props) => {
     );
   });
 
-  if (loadingUsersError) {
+  if (errorFetchUsers) {
     return (
       <div>
-        <p>{loadingUsersError.message}</p>
+        <p>{errorFetchUsers.message}</p>
       </div>
     );
   }
@@ -69,10 +65,10 @@ const UsersList: React.FC<any> = (props) => {
       <div className="flex flex-row justify-between my-3">
         <h1 className="m-2 text-xl">Users</h1>
         {isLoadingAddUser ? (
-          <span>loadding...</span>
+          <span>loading...</span>
         ) : (
           <Button disabled={isLoadingAddUser} onClick={handleAddUser}>
-            + Add User'
+            + Add User
           </Button>
         )}
       </div>
@@ -81,7 +77,7 @@ const UsersList: React.FC<any> = (props) => {
         <div>Error while adding a user: {addUserError.message}</div>
       )}
 
-      {isLoadingUsers ? (
+      {isLoadingFetchUsers ? (
         <Skeleton times={10} className="h-10 w-full" />
       ) : (
         <div> {renderedUsers}</div>
