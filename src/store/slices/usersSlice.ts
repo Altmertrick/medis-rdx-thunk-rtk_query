@@ -13,8 +13,6 @@ interface UsersState {
 }
 const initialState = {
   usersEntities: [],
-  currentPage: 1,
-  pageSize: 5,
   isLoading: false,
   error: null,
 } as UsersState;
@@ -22,11 +20,7 @@ const initialState = {
 const userSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {
-    addUser(state, action) {
-      state.usersEntities.push(action.payload);
-    },
-  },
+  reducers: {},
 
   extraReducers: (builder) => {
     //Fetch users

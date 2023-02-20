@@ -9,7 +9,6 @@ const fetchUsersThC = createAsyncThunk('fetch/users', async () => {
       _limit: 10,
     },
   });
-
   //const totalCount = res.headers['x-total-count']
 
   //DEV ONLY

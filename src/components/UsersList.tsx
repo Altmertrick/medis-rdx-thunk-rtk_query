@@ -1,20 +1,34 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUserThC, AppDispatch, fetchUsersThC, RootState } from '../store';
 import Skeleton from './Skeleton';
 import Button from './Button';
+import { curryGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
 
 type PropsT = {};
 
 const UsersList: React.FC<any> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { usersEntities, isLoading, error } = useSelector(
-    (state: RootState) => state.users
-  );
+  const [isLoadingUsers, setIsLoadingUsers] = useState(false);
+  const [loadingUsersError, setLoadingUsersError] = useState<any>(null);
+
+  const { usersEntities } = useSelector((state: RootState) => state.users);
 
   useEffect(() => {
-    dispatch(fetchUsersThC());
+    const fetchUsers = async () => {
+      setIsLoadingUsers(true);
+      try {
+        await dispatch(fetchUsersThC()).unwrap();
+        //setIsLoadingUsers(false);
+      } catch (error) {
+        setLoadingUsersError(error);
+        //setIsLoadingUsers(false);
+      } finally {
+        setIsLoadingUsers(false);
+      }
+    };
+    fetchUsers();
   }, []);
 
   const handleAddUser = () => {
@@ -31,10 +45,10 @@ const UsersList: React.FC<any> = (props) => {
     );
   });
 
-  if (error) {
+  if (loadingUsersError) {
     return (
       <div>
-        <p>{error.message}</p>
+        <p>{loadingUsersError.message}</p>
       </div>
     );
   }
@@ -45,7 +59,8 @@ const UsersList: React.FC<any> = (props) => {
         <h1 className="m-2 text-xl">Users</h1>
         <Button onClick={handleAddUser}>+ Add User</Button>
       </div>
-      {isLoading ? (
+
+      {isLoadingUsers ? (
         <Skeleton times={10} className="h-10 w-full" />
       ) : (
         <div> {renderedUsers}</div>
