@@ -3,6 +3,7 @@ import { useThunk } from '../hooks/use-thunk';
 import { removeUserThC } from '../store';
 import { UserT } from '../store/slices/usersSlice';
 import Button from './Button';
+import ExpandablePanel from './ExpandablePanel';
 
 interface PropsT {
   user: UserT;
@@ -15,25 +16,23 @@ const UsersListItem: React.FC<PropsT> = ({ user }) => {
     doRemoveUser(user);
   };
 
-  return (
-    <div key={user.id} className="mb border rounded">
-      <div className="flex p-2 justify-between items-center cursor-pointer">
-        <div className="flex justify-between items-center ">
-          <Button
-            className="mr-2"
-            loading={isLoading}
-            onClick={() => {
-              handleRemoveUser(user);
-            }}
-          >
-            <GoTrashcan />
-          </Button>
-          {user.name}
-          {error && <div>Error while deleting user! </div>}
-        </div>
-      </div>
-    </div>
+  const header = (
+    <>
+      <Button
+        className="mr-2"
+        loading={isLoading}
+        onClick={() => {
+          handleRemoveUser(user);
+        }}
+      >
+        <GoTrashcan />
+      </Button>
+      {user.name}
+      {error && <div>Error while deleting user! </div>}
+    </>
   );
+
+  return <ExpandablePanel header={header}>Content!!!</ExpandablePanel>;
 };
 
 export default UsersListItem;
