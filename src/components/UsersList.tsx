@@ -5,25 +5,30 @@ import Skeleton from './Skeleton';
 import Button from './Button';
 import { AsyncThunk } from '@reduxjs/toolkit';
 
-const useThunk = (thunk: AsyncThunk<any, void, any>) => {
+//T - type of thunks arguments
+
+function useThunk<T>(thunk: AsyncThunk<any, T, any>) {
   const dispatch = useDispatch<AppDispatch>();
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const runThunk = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      await dispatch(thunk()).unwrap();
-    } catch (error) {
-      setError(error as Error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [dispatch, thunk]);
+  const runThunk = useCallback(
+    async (arg: T) => {
+      setIsLoading(true);
+      try {
+        await dispatch(thunk(arg)).unwrap();
+      } catch (error) {
+        setError(error as Error);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [dispatch, thunk]
+  );
 
   return [runThunk, isLoading, error] as const;
-};
+}
 
 type PropsT = {};
 
