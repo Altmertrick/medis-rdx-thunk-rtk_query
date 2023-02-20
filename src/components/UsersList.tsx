@@ -44,13 +44,9 @@ const UsersList: React.FC<any> = (props) => {
     <div>
       <div className="flex flex-row justify-between my-3">
         <h1 className="m-2 text-xl">Users</h1>
-        {isLoadingAddUser ? (
-          <span>loading...</span>
-        ) : (
-          <Button disabled={isLoadingAddUser} onClick={handleAddUser}>
-            + Add User
-          </Button>
-        )}
+        <Button loading={isLoadingAddUser} onClick={handleAddUser}>
+          + Add User
+        </Button>
       </div>
 
       {addUserError && (
