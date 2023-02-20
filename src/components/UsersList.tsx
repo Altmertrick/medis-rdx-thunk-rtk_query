@@ -1,34 +1,9 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addUserThC, AppDispatch, fetchUsersThC, RootState } from '../store';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { addUserThC, fetchUsersThC, RootState } from '../store';
 import Skeleton from './Skeleton';
 import Button from './Button';
-import { AsyncThunk } from '@reduxjs/toolkit';
-
-//T - type of thunks arguments
-
-function useThunk<T>(thunk: AsyncThunk<any, T, any>) {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
-
-  const runThunk = useCallback(
-    async (arg: T) => {
-      setIsLoading(true);
-      try {
-        await dispatch(thunk(arg)).unwrap();
-      } catch (error) {
-        setError(error as Error);
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [dispatch, thunk]
-  );
-
-  return [runThunk, isLoading, error] as const;
-}
+import { useThunk } from '../hooks/use-thunk';
 
 type PropsT = {};
 
