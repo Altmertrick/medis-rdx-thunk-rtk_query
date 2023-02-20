@@ -22,42 +22,40 @@ const UsersList: React.FC<any> = (props) => {
     doAddUser();
   };
 
-  const renderedUsers = usersEntities.map((user) => {
-    return (
-      <div key={user.id} className="mb border rounded">
-        <div className="flex p-2 justify-between items-center cursor-pointer">
-          {user.name}
-        </div>
-      </div>
-    );
-  });
+  let content;
 
-  if (errorFetchUsers) {
-    return (
+  if (isLoadingFetchUsers) {
+    content = <Skeleton times={10} className="h-10 w-full" />;
+  } else if (errorFetchUsers) {
+    content = (
       <div>
-        <p>{errorFetchUsers.message}</p>
+        <p>Error: {errorFetchUsers.message}</p>
       </div>
     );
+  } else {
+    content = usersEntities.map((user) => {
+      return (
+        <div key={user.id} className="mb border rounded">
+          <div className="flex p-2 justify-between items-center cursor-pointer">
+            {user.name}
+          </div>
+        </div>
+      );
+    });
   }
 
   return (
     <div>
-      <div className="flex flex-row justify-between my-3">
+      <div className="flex flex-row justify-between items-center my-3">
         <h1 className="m-2 text-xl">Users</h1>
         <Button loading={isLoadingAddUser} onClick={handleAddUser}>
           + Add User
         </Button>
       </div>
-
       {addUserError && (
         <div>Error while adding a user: {addUserError.message}</div>
       )}
-
-      {isLoadingFetchUsers ? (
-        <Skeleton times={10} className="h-10 w-full" />
-      ) : (
-        <div> {renderedUsers}</div>
-      )}
+      {content}
     </div>
   );
 };

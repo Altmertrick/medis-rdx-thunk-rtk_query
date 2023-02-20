@@ -9,7 +9,7 @@ export function pauseSuccess(duration: number) {
 export function pauseError(duration: number) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      reject('Error message');
+      reject('Error from pause function!');
     }, duration);
   });
 }
