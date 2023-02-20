@@ -4,6 +4,8 @@ import { addUserThC, fetchUsersThC, RootState } from '../store';
 import Skeleton from './Skeleton';
 import Button from './Button';
 import { useThunk } from '../hooks/use-thunk';
+import { UserT } from '../store/slices/usersSlice';
+import UsersListItem from './UsersListItem';
 
 type PropsT = {};
 
@@ -34,13 +36,7 @@ const UsersList: React.FC<any> = (props) => {
     );
   } else {
     content = usersEntities.map((user) => {
-      return (
-        <div key={user.id} className="mb border rounded">
-          <div className="flex p-2 justify-between items-center cursor-pointer">
-            {user.name}
-          </div>
-        </div>
-      );
+      return <UsersListItem user={user} />;
     });
   }
 

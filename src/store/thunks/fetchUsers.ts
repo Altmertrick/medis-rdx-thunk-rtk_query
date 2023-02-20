@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { pauseSuccess, pauseError } from '../../utils/pause';
 
-const fetchUsersThC = createAsyncThunk('fetch/users', async () => {
+const fetchUsersThC = createAsyncThunk('users/fetch', async () => {
   const res = await axios.get('http://localhost:3005/users', {
     params: {
       _page: 1,
