@@ -1,8 +1,8 @@
 {
   "users": [
     {
-      "name": "Desiree Purdy",
-      "id": "8cGiyw9"
+      "name": "Myra",
+      "id": "1"
     },
     {
       "name": "Jo Leuschke",
@@ -20,190 +20,7 @@
       "name": "Miss Eloise Thompson",
       "id": "mauNWX_"
     },
-    {
-      "name": "Van Kihn",
-      "id": "dJpwdVM"
-    },
-    {
-      "name": "Whitney Cassin",
-      "id": "3sRQBPr"
-    },
-    {
-      "name": "Dominic Lindgren",
-      "id": "cdThUwl"
-    },
-    {
-      "name": "Bessie Senger",
-      "id": "6GYy9Sl"
-    },
-    {
-      "name": "Ellis Rippin",
-      "id": "aVyspEB"
-    },
-    {
-      "name": "Katie McCullough",
-      "id": "L4343aZ"
-    },
-    {
-      "name": "Ms. Geneva Bosco",
-      "id": "C4G7k6d"
-    },
-    {
-      "name": "Lila Bode",
-      "id": "tbhSeXm"
-    },
-    {
-      "name": "Clinton Kessler",
-      "id": "CE90A3R"
-    },
-    {
-      "name": "Derek Boehm",
-      "id": "baNible"
-    },
-    {
-      "name": "Freddie Ondricka",
-      "id": "mnHzwpR"
-    },
-    {
-      "name": "Louise Streich",
-      "id": "KWOWduH"
-    },
-    {
-      "name": "Willis King",
-      "id": "UZTDm1T"
-    },
-    {
-      "name": "Beth Roberts",
-      "id": "Ekon9c8"
-    },
-    {
-      "name": "Dr. Lorena Brakus",
-      "id": "eaJBPj4"
-    },
-    {
-      "name": "Gretchen Lebsack",
-      "id": "QPvOulJ"
-    },
-    {
-      "name": "Orlando Stehr",
-      "id": "tFpR76n"
-    },
-    {
-      "name": "Emmett Ernser",
-      "id": "lbdo9l9"
-    },
-    {
-      "name": "Mr. Susan Pouros",
-      "id": "XRDiIpp"
-    },
-    {
-      "name": "Ronald Grant",
-      "id": "kiRNUut"
-    },
-    {
-      "name": "Garry Haley",
-      "id": "ix2UOJN"
-    },
-    {
-      "name": "Marty Thiel",
-      "id": "69p5BYj"
-    },
-    {
-      "name": "Dr. Beulah Leffler",
-      "id": "DRDnquX"
-    },
-    {
-      "name": "Alton Kling",
-      "id": "FMqFiKv"
-    },
-    {
-      "name": "Agnes Stanton",
-      "id": "IMEGRbZ"
-    },
-    {
-      "name": "Ms. Natasha Klein",
-      "id": "RSWV-Xz"
-    },
-    {
-      "name": "Teresa Witting",
-      "id": "mKMPyBK"
-    },
-    {
-      "name": "Jeffrey Skiles",
-      "id": "FE6dcSX"
-    },
-    {
-      "name": "Ms. Clint Hansen",
-      "id": "siOHXXV"
-    },
-    {
-      "name": "Mrs. Ervin Jacobi",
-      "id": "KQ3oBXs"
-    },
-    {
-      "name": "Antoinette Mosciski",
-      "id": "3JWoDDQ"
-    },
-    {
-      "name": "Dr. Isabel Gerlach",
-      "id": "E5pXvXF"
-    },
-    {
-      "name": "Rosalie Johnson",
-      "id": "PAgz0PP"
-    },
-    {
-      "name": "Ricky Jacobson",
-      "id": "IyHbL7H"
-    },
-    {
-      "name": "Gloria Carroll",
-      "id": "en7MHGA"
-    },
-    {
-      "name": "Toby Stamm",
-      "id": "vKsYFaw"
-    },
-    {
-      "name": "Mrs. Katherine Mueller",
-      "id": "cZR2aeO"
-    },
-    {
-      "name": "Bethany Luettgen III",
-      "id": "UwXWfb8"
-    },
-    {
-      "name": "Alice Labadie",
-      "id": "r--hxZ0"
-    },
-    {
-      "name": "Kelley Lang",
-      "id": "SxmeOwo"
-    },
-    {
-      "name": "Jorge Gerlach",
-      "id": "Bc7YwS7"
-    },
-    {
-      "name": "Cary Labadie",
-      "id": "OjHTzA6"
-    },
-    {
-      "name": "Bertha Reynolds",
-      "id": "3BRj-TM"
-    },
-    {
-      "name": "Randy Willms",
-      "id": "VNO4ICG"
-    },
-    {
-      "name": "Kari Halvorson",
-      "id": "MEolYe1"
-    },
-    {
-      "name": "Bernard DuBuque II",
-      "id": "h7e7FbG"
-    },
+
     {
       "name": "Mae VonRueden",
       "id": "WnCR-zF"
@@ -213,6 +30,12 @@
       "id": "2DBxNz_"
     }
   ],
-  "albums": [],
+  "albums": [
+    {
+      "id": 10,
+      "userId": 1,
+      "title": "the first Mayra's album"
+    }
+  ],
   "photos": []
 }

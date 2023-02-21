@@ -2,11 +2,8 @@ import { createSlice, PayloadAction, SerializedError } from '@reduxjs/toolkit';
 import { fetchUsersThC } from '../thunks/fetchUsers';
 import { addUserThC } from '../thunks/addUser';
 import { removeUserThC } from '../thunks/removeUser';
+import { UserT } from '../index';
 
-export type UserT = {
-  id: string;
-  name: string;
-};
 interface UsersState {
   usersEntities: Array<UserT>;
   isLoading: boolean;

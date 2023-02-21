@@ -1,9 +1,10 @@
 import { GoTrashcan } from 'react-icons/go';
 import { useThunk } from '../hooks/use-thunk';
-import { removeUserThC } from '../store';
-import { UserT } from '../store/slices/usersSlice';
+import { removeUserThC, UserT } from '../store';
+
 import Button from './Button';
 import ExpandablePanel from './ExpandablePanel';
+import AlbumsList from './AlbumsList';
 
 interface PropsT {
   user: UserT;
@@ -32,7 +33,11 @@ const UsersListItem: React.FC<PropsT> = ({ user }) => {
     </>
   );
 
-  return <ExpandablePanel header={header}>Content!!!</ExpandablePanel>;
+  return (
+    <ExpandablePanel header={header}>
+      <AlbumsList user={user} />
+    </ExpandablePanel>
+  );
 };
 
 export default UsersListItem;
