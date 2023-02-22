@@ -5,10 +5,6 @@
       "id": "1"
     },
     {
-      "name": "Jo Leuschke",
-      "id": "2jBLAqP"
-    },
-    {
       "name": "Emmett Lynch",
       "id": "BuA-rrO"
     },
@@ -20,7 +16,6 @@
       "name": "Miss Eloise Thompson",
       "id": "mauNWX_"
     },
-
     {
       "name": "Mae VonRueden",
       "id": "WnCR-zF"
@@ -32,9 +27,44 @@
   ],
   "albums": [
     {
-      "id": 10,
-      "userId": 1,
-      "title": "the first Mayra's album"
+      "userId": "1",
+      "title": "Tasty Bronze Table",
+      "id": 13
+    },
+    {
+      "userId": "1",
+      "title": "Ergonomic Granite Chair",
+      "id": 14
+    },
+    {
+      "userId": "1",
+      "title": "Ergonomic Concrete Gloves",
+      "id": 15
+    },
+    {
+      "userId": "BuA-rrO",
+      "title": "Hiking Journey",
+      "id": 184
+    },
+    {
+      "userId": "1",
+      "title": "Refined Plastic Computer",
+      "id": 185
+    },
+    {
+      "userId": "1",
+      "title": "Fantastic Fresh Pants",
+      "id": 186
+    },
+    {
+      "userId": "BuA-rrO",
+      "title": "Awesome Bronze Mouse",
+      "id": 187
+    },
+    {
+      "userId": "1",
+      "title": "Bespoke Granite Shoes",
+      "id": 188
     }
   ],
   "photos": []
