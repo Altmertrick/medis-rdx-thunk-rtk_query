@@ -40,11 +40,6 @@
       "id": 192
     },
     {
-      "userId": "yr8H-93",
-      "title": "Generic Rubber Shirt",
-      "id": 199
-    },
-    {
       "userId": "BuA-rrO",
       "title": "Generic Wooden Chips",
       "id": 203
@@ -60,5 +55,26 @@
       "id": 209
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "albumId": 208,
+      "url": "https://loremflickr.com/150/150/abstract?lock=77682",
+      "id": 10
+    },
+    {
+      "albumId": 208,
+      "url": "https://loremflickr.com/150/150/abstract?lock=87778",
+      "id": 14
+    },
+    {
+      "albumId": 208,
+      "url": "https://loremflickr.com/150/150/abstract?lock=33685",
+      "id": 15
+    },
+    {
+      "albumId": 208,
+      "url": "https://loremflickr.com/150/150/abstract?lock=3167",
+      "id": 16
+    }
+  ]
 }

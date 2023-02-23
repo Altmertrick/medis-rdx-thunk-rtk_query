@@ -2,6 +2,7 @@ import { GoX } from 'react-icons/go';
 import { AlbumT, useRemoveAlbumMutation } from '../store';
 import Button from './Button';
 import ExpandablePanel from './ExpandablePanel';
+import PhotosList from './PhotosList';
 
 type PropsT = {
   album: AlbumT;
@@ -30,7 +31,7 @@ const AlbumsListItem: React.FC<PropsT> = ({ album }) => {
   );
   return (
     <ExpandablePanel key={album.id} header={header}>
-      Photos content
+      <PhotosList album={album} />
     </ExpandablePanel>
   );
 };
