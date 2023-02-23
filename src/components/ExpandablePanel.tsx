@@ -4,9 +4,10 @@ import { useState } from 'react';
 type PropsT = {
   header: React.ReactNode;
   children: React.ReactNode;
+  className?: string;
 };
 
-const ExpandablePanel: React.FC<PropsT> = ({ header, children }) => {
+const ExpandablePanel: React.FC<PropsT> = ({ header, children, className }) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleExpanded = () => {
@@ -21,7 +22,7 @@ const ExpandablePanel: React.FC<PropsT> = ({ header, children }) => {
           {expanded ? <GoChevronDown /> : <GoChevronLeft />}
         </div>
       </div>
-      {expanded && <div className="p-2 border-t shadow ">{children}</div>}
+      {expanded && <div className="p-2 border-t shadow">{children}</div>}
     </div>
   );
 };

@@ -1,20 +1,25 @@
-import { useAddAlbumMutation, useFetchAlbumsQuery } from '../store';
+import {
+  AlbumT,
+  useAddAlbumMutation,
+  useFetchAlbumsQuery,
+  useRemoveAlbumMutation,
+} from '../store';
 import { UserT } from '../store';
 import Skeleton from './Skeleton';
 import ExpandablePanel from './ExpandablePanel';
 import Button from './Button';
 import classNames from 'classnames';
+import AlbumsListItem from './AlbumsLitsItem';
 
 type PropsT = {
   user: UserT;
 };
 
 const AlbumsList: React.FC<PropsT> = ({ user }) => {
-  const { data, error, isLoading, isFetching, refetch } =
-    useFetchAlbumsQuery(user);
+  const { data, error, isLoading, isFetching } = useFetchAlbumsQuery(user);
   const [addAlbum, results] = useAddAlbumMutation();
 
-  const handleAddAlbum = async (user: UserT) => {
+  const handleAddAlbum = (user: UserT) => {
     addAlbum(user);
   };
 
@@ -40,13 +45,9 @@ const AlbumsList: React.FC<PropsT> = ({ user }) => {
       content = <div>{error.message}</div>;
     }
   } else {
+    //Render Albums
     content = data?.map((album) => {
-      const header = <div>{album.title}</div>;
-      return (
-        <ExpandablePanel key={album.id} header={header}>
-          Photos content
-        </ExpandablePanel>
-      );
+      return <AlbumsListItem key={album.id} album={album} />;
     });
   }
 
@@ -56,8 +57,8 @@ const AlbumsList: React.FC<PropsT> = ({ user }) => {
 
   return (
     <div>
-      <div className="flex flex-row justify-between my-3">
-        <div>Albums for {user.name}</div>
+      <div className="m-3 flex flex-row items-center justify-between ">
+        <h3 className="text-lg font-bold">Albums for {user.name}</h3>
         <Button
           loading={results.isLoading}
           onClick={() => {
